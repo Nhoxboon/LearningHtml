@@ -1,39 +1,58 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>HTML & CSS Test</title>
-        <link rel="stylesheet" href="asset/css/main.css">
-    </head>
-    <body>
-        <header>
-            <h1 id="header-logo">
-                HTML & CSS Basics Summary
-                <img src="asset/imagine/logo.png" alt="" id="Anh nen">
-            </h1>
-        </header>
-        <div id="main">
-            <div id="content">
-                <h2 class="category">HTML Summary</h2>
-                <p class="text">
-                    HTML(HyperText Markup Language) is used to define our page content, structure and meaning.</br>
-                    You <b>don't</b> use it for styling purposes. Use CSS for that instead!
-                </p>
-                <p class="text-border">
-                    HTML uses "element" to describe (annotate) content
-                </p>
-                <p>
-                    The Home page is the page you are currently on. It contains a brief introduction to the website.
-                </p>
-                <p>
-                    The HTML page contains a summary of the basics of HTML.
-                </p>
-                <p>
-                    The CSS page contains a summary of the basics of CSS.
-                </p>
-                <p>
-                    The Contact page contains a contact form that you can use to send me a message.
-                </p>
-            </div>
-        </div>
-    </body>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML & CSS Basics Summary</title>
+    <link rel="stylesheet" href="asset/css/main.css">
+</head>
+<body>
+    <header>
+        <h1 id="header-text">HTML & CSS Basics Summary</h1>
+        <p id="logo">
+            <img src="asset/imagine/logo.png" height="200" alt="Logo">
+        </p>
+    </header>
+
+    <main id="contents">
+        <p id="html-summary">
+            <h2>HTML Summary</h2>
+            <p class="other">HTML (HyperText Markup Language) is used to define our page content, structure and meaning. <br> You <b> don't</b> use it for styling purposes. Use CSS for that instead.</p>
+            <p class="text-border">HTML uses "elements" to describe (annotate) content</p>
+            <p class="text-detail">HTML elements usually have opening tags, content and then closing tags</p>
+            <p class="text-border">You can also have void (empty) elements like images</p>
+            <p class="text-border">You can also configure elements with attributes</p>
+            <p class="text-detail">There is a long list of available elements but you'll gain experience over time, no worry.</p>
+            <p class="other">Learn more about all available HTML elements on 
+                <mark style="background-color: #fef1a7;" id="text-mark">
+                    the MDN HTML element reference
+                </mark>
+            </p>
+        </p>
+
+        <p id="css-summary">
+            <h2>CSS Summary</h2>
+            <p class="other">CSS (Cascading Style Sheets) is used for styling your page content.</p>
+            <p class="text-detail">Styles are assigned via property-value pairs</p>
+            <p class="text-detail">You can assign styles via the "style" attribute</p>
+            <p class="text-border">To avoid code duplication, you typically use global styles (e.g. via the "style" element) instead</p>
+            <p class="text-detail">Alternatively, you can work with external stylesheet files which you "link" to</p>
+            <p class="text-border">When working with CSS, concepts like "inheritance", "specificity", and the "box model" should be understood.</p>
+            <p class="other">Learn more about all available CSS properties and values on 
+                <mark style="background-color: #fef1a7;" id="text-mark">
+                    the MDN CSS property reference
+                </mark>
+            </p>
+        </p>
+    </main>
+
+    <footer>
+        <h4 id="download">
+            Download PDF Summary
+        </h4>
+        <p id="copy">
+            &copy; Academind GmbH
+        </p>
+    </footer>
+</body>
 </html>

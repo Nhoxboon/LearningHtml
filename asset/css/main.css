@@ -1,3 +1,87 @@
-#header{
-    background-color:#f3c9ff
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3e9ff;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+}
+
+#header-text
+{
+    font-size: 55px;
+    color: #774ad8;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    background-color: #774ad8;
+    padding: 20px;
+    margin: 0 auto; /* Canh giữa theo chiều ngang */
+    width: 80%; /* Chiều rộng 80% màn hình */
+    max-width: 750px; /* Giới hạn tối đa 750px */
+    border-radius: 10px; /* Bán kính bo tròn */
+    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); Hiệu ứng bóng đổ */
+    border-style: hidden;
+}
+
+
+#css-summary {
+    margin-bottom: 20px;
+}
+
+
+
+footer {
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+
+#download{
+    background-color: #f9c927;
+    padding: 20px;
+    margin: 0 auto;
+    width: 20%; 
+    max-width: 200px; /* Giới hạn tối đa 1000px */
+    border-radius: 10px; /* Bán kính bo tròn */
+    /* box-shadow: 0 5px 10px rgba(119, 74, 216, 255); Hiệu ứng bóng đổ */
+}
+
+
+#text-mark{
+    border-radius: 5px;
+    padding: 2px;
+    color: #4b2b59;
+}
+
+h2{
+    color: #f3f0fd;
+}
+
+.text-border {
+    color: #f3f0fd;
+    border-left: 5px solid #fad256;
+    padding-left: 15px;
+}
+
+.text-detail{
+    color: #f3f0fd;
+    padding-left: 15px;
+}
+
+.other{
+    color: #f3f0fd;
+}
+
+#copy{
+    color: #9384a1;
+    padding: 10px;
 }
