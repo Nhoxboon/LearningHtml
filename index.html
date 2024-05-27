@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -8,29 +8,40 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Ứng dụng quản lý sinh viên</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="container mx-auto p-4">
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="container mx-auto p-4">
     <h2 class="text-2xl font-bold mb-4">Thêm sinh viên</h2>
     <form id="formSinhVien" class="mb-8">
       <div class="mb-4">
-        <label for="hoTen" class="block text-gray-700 text-sm font-bold mb-2">Họ tên:</label>
-        <input type="text" id="hoTen" class="form-control">
+        <label for="hoTen" class="block text-gray-700 text-sm font-bold mb-2"
+          >Họ tên:</label
+        >
+        <input type="text" id="hoTen" class="form-control" />
       </div>
       <div class="mb-4">
-        <label for="maSV" class="block text-gray-700 text-sm font-bold mb-2">Mã SV:</label>
-        <input type="text" id="maSV" class="form-control">
+        <label for="maSV" class="block text-gray-700 text-sm font-bold mb-2"
+          >Mã SV:</label
+        >
+        <input type="text" id="maSV" class="form-control" />
       </div>
       <div class="mb-4">
-        <label for="ngaySinh" class="block text-gray-700 text-sm font-bold mb-2">Ngày sinh:</label>
-        <input type="date" id="ngaySinh" class="form-control">
+        <label for="ngaySinh" class="block text-gray-700 text-sm font-bold mb-2"
+          >Ngày sinh:</label
+        >
+        <input type="date" id="ngaySinh" class="form-control" />
       </div>
       <div class="mb-4">
-        <label for="lop" class="block text-gray-700 text-sm font-bold mb-2">Lớp:</label>
-        <input type="text" id="lop" class="form-control">
+        <label for="lop" class="block text-gray-700 text-sm font-bold mb-2"
+          >Lớp:</label
+        >
+        <input type="text" id="lop" class="form-control" />
       </div>
       <div class="flex items-center justify-between">
-        <button type="submit" class="btn btn-primary">Thêm</button>
+        <button type="submit" class="btn btn-primary" id="btnThem">Thêm</button>
       </div>
     </form>
 
@@ -47,9 +58,9 @@
       </thead>
       <tbody id="tbodySinhVien"></tbody>
     </table>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/asset/js/script.js"></script>
   </body>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="/asset/js/script.js"></script>
 </html>
