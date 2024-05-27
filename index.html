@@ -1,58 +1,55 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML & CSS Basics Summary</title>
-    <link rel="stylesheet" href="asset/css/main.css">
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Ứng dụng quản lý sinh viên</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1 id="header-text">HTML & CSS Basics Summary</h1>
-        <p id="logo">
-            <img src="asset/imagine/logo.png" height="200" alt="Logo">
-        </p>
-    </header>
+<body class="container mx-auto p-4">
+    <h2 class="text-2xl font-bold mb-4">Thêm sinh viên</h2>
+    <form id="formSinhVien" class="mb-8">
+      <div class="mb-4">
+        <label for="hoTen" class="block text-gray-700 text-sm font-bold mb-2">Họ tên:</label>
+        <input type="text" id="hoTen" class="form-control">
+      </div>
+      <div class="mb-4">
+        <label for="maSV" class="block text-gray-700 text-sm font-bold mb-2">Mã SV:</label>
+        <input type="text" id="maSV" class="form-control">
+      </div>
+      <div class="mb-4">
+        <label for="ngaySinh" class="block text-gray-700 text-sm font-bold mb-2">Ngày sinh:</label>
+        <input type="date" id="ngaySinh" class="form-control">
+      </div>
+      <div class="mb-4">
+        <label for="lop" class="block text-gray-700 text-sm font-bold mb-2">Lớp:</label>
+        <input type="text" id="lop" class="form-control">
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" class="btn btn-primary">Thêm</button>
+      </div>
+    </form>
 
-    <main id="contents">
-        <p id="html-summary">
-            <h2>HTML Summary</h2>
-            <p class="other">HTML (HyperText Markup Language) is used to define our page content, structure and meaning. <br> You <b> don't</b> use it for styling purposes. Use CSS for that instead.</p>
-            <p class="text-border">HTML uses "elements" to describe (annotate) content</p>
-            <p class="text-detail">HTML elements usually have opening tags, content and then closing tags</p>
-            <p class="text-border">You can also have void (empty) elements like images</p>
-            <p class="text-border">You can also configure elements with attributes</p>
-            <p class="text-detail">There is a long list of available elements but you'll gain experience over time, no worry.</p>
-            <p class="other">Learn more about all available HTML elements on 
-                <mark style="background-color: #fef1a7;" id="text-mark">
-                    the MDN HTML element reference
-                </mark>
-            </p>
-        </p>
-
-        <p id="css-summary">
-            <h2>CSS Summary</h2>
-            <p class="other">CSS (Cascading Style Sheets) is used for styling your page content.</p>
-            <p class="text-detail">Styles are assigned via property-value pairs</p>
-            <p class="text-detail">You can assign styles via the "style" attribute</p>
-            <p class="text-border">To avoid code duplication, you typically use global styles (e.g. via the "style" element) instead</p>
-            <p class="text-detail">Alternatively, you can work with external stylesheet files which you "link" to</p>
-            <p class="text-border">When working with CSS, concepts like "inheritance", "specificity", and the "box model" should be understood.</p>
-            <p class="other">Learn more about all available CSS properties and values on 
-                <mark style="background-color: #fef1a7;" id="text-mark">
-                    the MDN CSS property reference
-                </mark>
-            </p>
-        </p>
-    </main>
-
-    <footer>
-        <h4 id="download">
-            Download PDF Summary
-        </h4>
-        <p id="copy">
-            &copy; Academind GmbH
-        </p>
-    </footer>
-</body>
+    <h2 class="text-2xl font-bold mb-4">Danh sách sinh viên</h2>
+    <table id="bangSinhVien" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Họ tên</th>
+          <th>Mã SV</th>
+          <th>Ngày sinh</th>
+          <th>Lớp</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="tbodySinhVien"></tbody>
+    </table>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="/asset/js/script.js"></script>
 </html>
