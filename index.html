@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quản lý sinh viên</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="container mx-auto p-4">
@@ -15,12 +15,12 @@
 
 <div class="mb-4">
     <label for="lop" class="block text-gray-700 text-sm font-bold mb-2">Chọn lớp:</label>
-    <select id="lop" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    <select id="lop" class="form-control">
     </select>
 </div>
 
 <h3 class="text-xl font-bold mb-2">Danh sách sinh viên</h3>
-<table id="bangSinhVien" class="table-auto w-full">
+<table id="bangSinhVien" class="table table-bordered">
     <thead>
     <tr>
         <th class="px-4 py-2">Họ tên</th>
@@ -36,22 +36,18 @@
 <div id="formSinhVienModal" class="hidden fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 </div>
 
-<script>
-    $(document).ready(function() {
-        // Đọc dữ liệu từ data.json và hiển thị danh sách lớp vào dropdown
-        $.getJSON("data.json", function(data) {
-            // ...
-        });
+<!-- Bootstrap JavaScript Libraries -->
+<script
+src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+crossorigin="anonymous"
+></script>
 
-        // Xử lý sự kiện khi chọn lớp từ dropdown
-        $("#lop").change(function() {
-            // ...
-        });
-
-        // Các hàm xử lý sự kiện thêm, sửa, xóa sinh viên
-        // ...
-    });
-</script>
-
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+crossorigin="anonymous"
+></script>
+<script src="/asset/js/script.js"></script>
 </body>
 </html>
