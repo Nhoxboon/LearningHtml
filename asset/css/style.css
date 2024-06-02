@@ -1,0 +1,96 @@
+.task-list {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.task-list .task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: #fff;
+}
+
+.task-list .task-item .task-title {
+    flex: 1;
+}
+
+.task-list .task-item .task-priority {
+    margin-right: 20px;
+}
+
+.add-task {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.edit-task {
+    font-size: 25px;
+}
+
+.delete-task {
+    font-size: 25px;
+}
+
+.bg-purple {
+    background-color: darkviolet !important;
+    border-color: darkviolet !important;
+}
+
+.bg-purple:hover {
+    background-color: purple !important;
+    border-color: purple !important;
+}
+
+.spinner-border {
+    color: darkviolet;
+}
+
+.task-id {
+    font-size: small;
+    color: rgb(199, 197, 197);
+    margin-bottom: 0;
+}
+
+.circle-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: width 1s ease;
+    border: 2px solid darkviolet;
+}
+
+/* Thêm lớp CSS để đánh dấu nút được chọn với các màu tương ứng */
+.priority-btn.selected-high {
+    background-color: #dc3545; /* Màu đỏ cho High */
+    color: white; /* Màu chữ khi nút được chọn */
+}
+
+.priority-btn.selected-medium {
+    background-color: #ffc107; /* Màu vàng cho Medium */
+    color: white; /* Màu chữ khi nút được chọn */
+}
+
+.priority-btn.selected-low {
+    background-color: #28a745; /* Màu xanh lá cho Low */
+    color: white; /* Màu chữ khi nút được chọn */
+}

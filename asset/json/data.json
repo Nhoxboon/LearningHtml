@@ -1,17 +1,27 @@
 [
-    {
-      "tenLop": "K64KTPM1",
-      "sinhVien": [
-        { "hoTen": "Nguyễn Văn A", "maSV": "123456", "ngaySinh": "2002-05-15" },
-        { "hoTen": "Trần Thị B", "maSV": "654321", "ngaySinh": "2003-08-22" }
-      ]
-    },
-    {
-      "tenLop": "K64KTPM2",
-      "sinhVien": [
-        { "hoTen": "Lê Văn C", "maSV": "987654", "ngaySinh": "2002-12-10" },
-        { "hoTen": "Phạm Thị D", "maSV": "456789", "ngaySinh": "2003-03-05" }
-      ]
-    }
-  ]
-  
+  {
+    "task": "Go to gym",
+    "priority": "High",
+    "status": "To Do"
+  },
+  {
+    "task": "Read a book",
+    "priority": "Low",
+    "status": "Done"
+  },
+  {
+    "task": "Go to market",
+    "priority": "Medium",
+    "status": "In Progress"
+  },
+  {
+    "task": "Complete assignment",
+    "priority": "High",
+    "status": "To Do"
+  },
+  {
+    "task": "Pay bills",
+    "priority": "Medium",
+    "status": "To Do"
+  }
+]
