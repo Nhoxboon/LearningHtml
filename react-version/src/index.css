@@ -1,13 +1,106 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.task-list {
+  max-width: 600px;
+  margin: 50px auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.task-list .task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+.task-list .task-item .task-title {
+  flex: 1;
+}
+
+.task-list .task-item .task-priority {
+  margin-right: 20px;
+}
+
+.add-task {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.edit-task {
+  font-size: 25px;
+}
+
+.delete-task {
+  font-size: 25px;
+}
+
+.bg-purple {
+  background-color: darkviolet !important;
+  border-color: darkviolet !important;
+}
+
+.bg-purple:hover {
+  background-color: purple !important;
+  border-color: purple !important;
+}
+
+.spinner-border {
+  color: darkviolet;
+}
+
+.task-id {
+  font-size: small;
+  color: rgb(199, 197, 197);
+  margin-bottom: 0;
+}
+
+.circle-container {
+  display: flex;
+  width: 100px;
+  padding: 50px 0;
+  border-radius: 8px;
+  background: #fff;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle-progress {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: conic-gradient(#7d2ae8, 3.6deg, #ededed 0deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-progress::before {
+  content: '';
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Selected priority button styling */
+.priority-btn.selected-high {
+  background-color: #dc3545; /* Red for High */
+  color: white;
+}
+
+.priority-btn.selected-medium {
+  background-color: #ffc107; /* Yellow for Medium */
+  color: white;
+}
+
+.priority-btn.selected-low {
+  background-color: #28a745; /* Green for Low */
+  color: white;
 }

@@ -1,3 +1,9 @@
+.btn{
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
 .task-list {
     max-width: 600px;
     margin: 50px auto;
@@ -60,23 +66,33 @@
 }
 
 .circle-container {
-    position: relative;
+    display: flex;
     width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    padding: 50px 0;
+    border-radius: 8px;
+    background: #fff;
+    flex-direction: column;
+    align-items: center;
 }
 
-.circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20%;
-    height: 20%;
+.circle-progress{
+    position: relative;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
-    background-color: transparent;
-    transition: width 1s ease;
-    border: 2px solid darkviolet;
+    background: conic-gradient(#7d2ae8, 3.6deg, #ededed 0deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-progress::before {
+    content: "";
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: white;
 }
 
 /* Thêm lớp CSS để đánh dấu nút được chọn với các màu tương ứng */

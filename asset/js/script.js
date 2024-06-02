@@ -7,8 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let tasks = [];
   let selectedPriority = null;
+  let editingTaskIndex = null;
 
+  const loadTasksFromLocalStorage = () => {
+    const tasksJSON = localStorage.getItem("tasks");
+    if (tasksJSON) {
+      tasks = JSON.parse(tasksJSON);
+    }
+  };
 
+  const saveTasksToLocalStorage = () => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
 
   const fetchTasks = async () => {
     try {
@@ -21,10 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-
   const renderTasks = () => {
     tasksContainer.innerHTML = "";
     tasks.forEach((task, index) => {
+      const statusAngle = getStatusAngle(task.status);
       const taskElement = document.createElement("div");
       taskElement.className = "task-item";
       taskElement.innerHTML = `
@@ -38,7 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <span class="badge badge-secondary">${task.status}</span>
         <div class="circle-container">
-          <p class="circle"></p>
+          <div class="circle-progress" style="background: conic-gradient(#7d2ae8 ${statusAngle}deg, #ededed 0deg);">
+            <p></p>
+          </div>
         </div>
         <span class="task-actions">
           <button class="btn text-lg text-primary btn-sm m-3 edit-task" data-index="${index}">
@@ -80,8 +92,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const getStatusAngle = (status) => {
+    switch (status) {
+      case "To Do":
+        return 0;
+      case "In Progress":
+        return 180;
+      case "Done":
+        return 360;
+      default:
+        return 0;
+    }
+  };
+
   const addTask = (task) => {
     tasks.push(task);
+    saveTasksToLocalStorage();
     renderTasks();
   };
 
@@ -89,49 +115,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const task = tasks[index];
     taskInput.value = task.task;
     selectedPriority = task.priority;
+    editingTaskIndex = index;
+
     document.querySelectorAll('.priority-btn').forEach(button => {
+      button.classList.remove('selected-high', 'selected-medium', 'selected-low');
       if (button.getAttribute('data-priority') === task.priority) {
         button.classList.add(`selected-${task.priority.toLowerCase()}`);
-      } else {
-        button.classList.remove(`selected-${button.getAttribute('data-priority').toLowerCase()}`);
       }
     });
+
     addTaskFormContainer.style.display = "block";
+  };
 
-    addTaskForm.onsubmit = (event) => {
-      event.preventDefault();
-      const updatedTask = taskInput.value.trim();
-
-      if (!updatedTask) {
-        taskInput.classList.add("is-invalid");
-        return;
-      } else {
-        taskInput.classList.remove("is-invalid");
-      }
-
-      if (!selectedPriority) {
-        alert("Please select a priority.");
-        return;
-      }
-
-      tasks[index] = {
-        task: updatedTask,
-        priority: selectedPriority,
-        status: task.status,
-      };
-
-      renderTasks();
-      addTaskFormContainer.style.display = "none";
-      taskInput.value = "";
-      selectedPriority = null;
-      document.querySelectorAll('.priority-btn').forEach(button => {
-        button.classList.remove('selected-high', 'selected-medium', 'selected-low');
-      });
-    };
+  const updateTask = (index, updatedTask) => {
+    tasks[index] = updatedTask;
+    saveTasksToLocalStorage();
+    renderTasks();
   };
 
   const deleteTask = (index) => {
     tasks.splice(index, 1);
+    saveTasksToLocalStorage();
     renderTasks();
   };
 
@@ -157,7 +161,13 @@ document.addEventListener("DOMContentLoaded", () => {
       status: "To Do",
     };
 
-    addTask(newTask);
+    if (editingTaskIndex !== null) {
+      updateTask(editingTaskIndex, newTask);
+      editingTaskIndex = null;
+    } else {
+      addTask(newTask);
+    }
+
     taskInput.value = "";
     selectedPriority = null;
     document.querySelectorAll('.priority-btn').forEach(button => {
@@ -168,9 +178,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   showAddTaskFormButton.addEventListener("click", () => {
     addTaskFormContainer.style.display = "block";
+    editingTaskIndex = null;
+    taskInput.value = "";
+    selectedPriority = null;
+    document.querySelectorAll('.priority-btn').forEach(button => {
+      button.classList.remove('selected-high', 'selected-medium', 'selected-low');
+    });
   });
 
-  fetchTasks();
+  loadTasksFromLocalStorage();
+  if (tasks.length === 0) {
+    fetchTasks();
+  } else {
+    renderTasks();
+  }
 
   const priorityButtons = document.querySelectorAll('.priority-btn');
   priorityButtons.forEach(button => {
