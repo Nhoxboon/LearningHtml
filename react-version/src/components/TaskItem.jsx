@@ -1,5 +1,5 @@
 import React from 'react';
-import './TaskItem.css';
+import './css/TaskItem.css';
 
 const TaskItem = ({ task, index, onEdit, onDelete }) => {
   const getStatusAngle = (status) => {
