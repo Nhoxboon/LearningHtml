@@ -50,3 +50,16 @@
   color: rgb(199, 197, 197);
   margin-bottom: 0;
 }
+
+.badge {
+  font-size: 13px;
+  font-weight: 400;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.badge-secondary {
+  margin-top: 10px;
+  color: #fff;
+  background-color: #6c757d;
+}

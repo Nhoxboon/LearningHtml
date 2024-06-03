@@ -40,7 +40,9 @@ const TaskItem = ({ task, index, onEdit, onDelete }) => {
           {task.priority}
         </p>
       </div>
-      <span className="badge badge-secondary">{task.status}</span>
+      <div>
+        <span className="badge badge-secondary">{task.status}</span>
+      </div>
       <div className="circle-container">
         <div
           className="circle-progress"
