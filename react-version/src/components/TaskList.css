@@ -1,0 +1,52 @@
+.task-list {
+  max-width: 600px;
+  margin: 50px auto;
+}
+
+#tasks-container .task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+#tasks-container .task-title {
+  flex: 1 1 50%;
+  margin: auto;
+  margin-bottom: 16px;
+}
+
+#tasks-container .circle-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  background: conic-gradient(#7d2ae8 90deg, #ededed 0deg);
+}
+
+.bg-purple {
+  background-color: darkviolet !important;
+  border-color: darkviolet !important;
+}
+
+.bg-purple:hover {
+  background-color: purple !important;
+  border-color: purple !important;
+}
+
+.spinner-border {
+  color: darkviolet;
+}
+
+.task-id {
+  font-size: small;
+  color: rgb(199, 197, 197);
+  margin-bottom: 0;
+}

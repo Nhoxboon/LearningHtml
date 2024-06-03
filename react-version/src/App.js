@@ -1,42 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import TaskList from './component/TaskList';
-import AddTaskForm from './component/AddTaskForm';
+import React, { useState } from 'react';
+import TaskList from './components/TaskList';
+import AddTaskForm from './components/AddTaskForm';
+import './App.css';
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const initializeTasks = () => {
+    const savedTasks = localStorage.getItem('tasks');
+    if (savedTasks) {
+      return JSON.parse(savedTasks);
+    }
+    
+    const request = new XMLHttpRequest();
+    request.open('GET', './data.json', false); // synchronous request
+    request.send(null);
+
+    if (request.status === 200) {
+      return JSON.parse(request.responseText);
+    } else {
+      return [];
+    }
+  };
+
+  const [tasks, setTasks] = useState(initializeTasks);
+  const [selectedPriority, setSelectedPriority] = useState(null);
   const [editingTaskIndex, setEditingTaskIndex] = useState(null);
-
-  useEffect(() => {
-    const loadTasksFromLocalStorage = () => {
-      const tasksJSON = localStorage.getItem('tasks');
-      if (tasksJSON) {
-        setTasks(JSON.parse(tasksJSON));
-      } else {
-        fetchTasks();
-      }
-    };
-
-    const fetchTasks = async () => {
-      try {
-        const response = await fetch('./data.json');
-        if (response.ok) {
-          const data = await response.text();
-          try {
-            const jsonData = JSON.parse(data);
-            setTasks(jsonData);
-          } catch (error) {
-            console.error('Invalid JSON:', data);
-          }
-        } else {
-          console.error('Server response:', response.status);
-        }
-      } catch (error) {
-        console.error('Fetch error:', error);
-      }
-    };
-
-    loadTasksFromLocalStorage();
-  }, []);
+  const [showAddTaskForm, setShowAddTaskForm] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState(null);
 
   const saveTasksToLocalStorage = (tasks) => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -49,39 +38,62 @@ const App = () => {
   };
 
   const updateTask = (index, updatedTask) => {
-    const newTasks = tasks.map((task, i) => (i === index ? updatedTask : task));
-    setTasks(newTasks);
-    saveTasksToLocalStorage(newTasks);
+    const updatedTasks = tasks.map((task, i) =>
+      i === index ? { ...task, ...updatedTask } : task
+    );
+    setTasks(updatedTasks);
+    saveTasksToLocalStorage(updatedTasks);
   };
 
   const deleteTask = (index) => {
-    const newTasks = tasks.filter((_, i) => i !== index);
-    setTasks(newTasks);
-    saveTasksToLocalStorage(newTasks);
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+    saveTasksToLocalStorage(updatedTasks);
+  };
+
+  const startEditing = (index) => {
+    if (index !== null) {
+      setEditingTaskIndex(index);
+      setTaskToEdit(tasks[index]);
+      setSelectedPriority(tasks[index].priority);
+      setShowAddTaskForm(true);
+    } else {
+      // Handle adding a new task here, if desired
+      setShowAddTaskForm(true);
+    }
+  };
+  
+
+  const stopEditing = () => {
+    setEditingTaskIndex(null);
+    setTaskToEdit(null);
+    setSelectedPriority(null);
+    setShowAddTaskForm(false);
+  };
+
+  const handleFormSubmit = (task) => {
+    if (editingTaskIndex !== null) {
+      updateTask(editingTaskIndex, task);
+    } else {
+      addTask(task);
+    }
+    stopEditing();
   };
 
   return (
     <div className="container">
-      <div className="task-list">
-        <div className="d-flex justify-content-between align-items-center p-2 bd-highlight">
-          <h2>Task List</h2>
-          <button className="btn btn-primary rounded-5 bg-purple" onClick={() => setEditingTaskIndex(null)}>
-            + Add Task
-          </button>
-        </div>
-        <TaskList tasks={tasks} editTask={setEditingTaskIndex} deleteTask={deleteTask} />
-      </div>
-      {editingTaskIndex !== null && (
+      <TaskList
+        tasks={tasks}
+        onEdit={startEditing}
+        onDelete={deleteTask}
+      />
+      {showAddTaskForm && (
         <AddTaskForm
-          task={tasks[editingTaskIndex]}
-          saveTask={(task) => {
-            if (editingTaskIndex !== null) {
-              updateTask(editingTaskIndex, task);
-              setEditingTaskIndex(null);
-            } else {
-              addTask(task);
-            }
-          }}
+          onSubmit={handleFormSubmit}
+          taskToEdit={taskToEdit}
+          selectedPriority={selectedPriority}
+          setSelectedPriority={setSelectedPriority}
+          stopEditing={stopEditing}
         />
       )}
     </div>

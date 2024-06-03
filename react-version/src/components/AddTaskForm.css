@@ -1,0 +1,24 @@
+/* AddTaskForm specific styles */
+.add-task {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.priority-btn.selected-high {
+  background-color: #dc3545;
+  color: white;
+}
+
+.priority-btn.selected-medium {
+  background-color: #ffc107;
+  color: white;
+}
+
+.priority-btn.selected-low {
+  background-color: #28a745;
+  color: white;
+}
