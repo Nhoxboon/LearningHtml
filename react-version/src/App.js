@@ -19,6 +19,22 @@ const App = () => {
     } else {
       return [];
     }
+
+    //Fetch way
+    // const fetchData = async () => {    
+    //   try {
+    //   const response = await fetch('./data.json');
+    //   if (response.ok) {
+    //     const data = await response.json();
+    //     return data;
+    //   } else {
+    //     return [];
+    //   }
+    //   } catch (error) {
+    //   console.error('Error fetching data:', error);
+    //   return [];
+    //   }
+    // };
   };
 
   const [tasks, setTasks] = useState(initializeTasks);
