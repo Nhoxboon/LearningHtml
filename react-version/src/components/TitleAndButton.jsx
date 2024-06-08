@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
+import "bootstrap/dist/js/bootstrap.bundle";
 import AddEmployeeModal from './AddEmployeeModal';
 import { useState, useEffect } from 'react';
 
@@ -26,6 +26,13 @@ function TitleAndButton() {
         // Update local storage after adding a new employee
         localStorage.setItem('employees', JSON.stringify([...employees, employee]));
       };
+
+      const deleteEmployee = (index) => {
+        const newEmployees = employees.filter((employee, i) => i !== index);
+        setEmployees(newEmployees);
+        // Update local storage after deleting an employee
+        localStorage.setItem('employees', JSON.stringify(newEmployees));
+        };
 
     return (
         <>
@@ -81,7 +88,7 @@ function TitleAndButton() {
                         </div>
                         <div className="col ml-0">
                             <button className="btn text-primary btn-lg btn-edit" type="button"><i className="bi bi-pencil"></i></button>
-                            <button className="btn text-danger btn-lg btn-delete" type="button"><i className="bi bi-trash-fill"></i></button>
+                            <button className="btn text-danger btn-lg btn-delete" onClick={() => deleteEmployee(index)} type="button"><i className="bi bi-trash-fill"></i></button>
                         </div>
                     </div>
                 ))}

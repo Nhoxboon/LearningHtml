@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
+import 'bootstrap/js/dist/modal';
 
 function AddEmployeeModal(props) {
+
+    function validatePhoneNumber(phone) {
+        return /^0\d{9}$/.test(phone);
+    }
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -9,8 +14,8 @@ function AddEmployeeModal(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (!name || !email || !address || !phone) {
-            alert("Vui lòng điền đầy đủ thông tin");
+        if (!name || !email || !address || !validatePhoneNumber(phone)) {
+            alert("Vui lòng kiểm tra lại thông tin. Số điện thoại phải có độ dài 10 ký tự và bắt đầu bằng số 0.");
             return;
         }
         const newEmployee = { name, email, address, phone };
@@ -19,9 +24,10 @@ function AddEmployeeModal(props) {
         setEmail('');
         setAddress('');
         setPhone('');
-        document.getElementById('addEmployeeModal').classList.remove('show'); // Loại bỏ lớp 'show' để đóng modal
-        document.getElementById('addEmployeeModal').setAttribute('aria-hidden', 'true'); // Đặt thuộc tính aria-hidden thành 'true' để đóng modal
     };
+    document.getElementById('addEmployeeModal').classList.remove('show'); // Loại bỏ lớp 'show' để đóng modal
+    document.getElementById('addEmployeeModal').setAttribute('aria-hidden', 'true'); // Đặt thuộc tính aria-hidden thành 'true' để đóng modal
+    
 
     return (
         <div className="modal fade" id="addEmployeeModal" tabIndex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
