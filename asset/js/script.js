@@ -1,4 +1,3 @@
-// Validate phone number
 function validatePhoneNumber(phone) {
     return /^0\d{9}$/.test(phone);
 }
@@ -16,12 +15,12 @@ function getEmployees(callback) {
     }
 }
 
-// Save employees to localStorage
+
 function saveEmployees(employees) {
     localStorage.setItem('employees', JSON.stringify(employees));
 }
 
-// Render employee table
+
 function renderEmployeeTable(data) {
     const employeeTable = $('#employeeTable').empty();
     data.forEach((employee, index) => {
@@ -76,7 +75,7 @@ $('#addEmployeeForm').submit(function(event) {
     $('#addEmployeeForm')[0].reset();
 });
 
-// Handle edit button click
+
 function handleEdit() {
     const index = $(this).closest('.row').data('index');
     getEmployees(data => {
@@ -89,7 +88,7 @@ function handleEdit() {
     });
 }
 
-// Handle delete button click
+
 function handleDelete() {
     const index = $(this).closest('.row').data('index');
     getEmployees(data => {
