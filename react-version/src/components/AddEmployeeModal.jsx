@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Modal } from 'bootstrap';
 
 function AddEmployeeModal(props) {
     const validatePhoneNumber = (phone) => /^0\d{9}$/.test(phone);
@@ -30,8 +30,13 @@ function AddEmployeeModal(props) {
             address: '',
             phone: ''
         });
-        document.getElementById('addEmployeeModal').classList.remove('show'); // Loại bỏ lớp 'show' để đóng modal
-        document.getElementById('addEmployeeModal').setAttribute('aria-hidden', 'true'); // Đặt thuộc tính aria-hidden thành 'true' để đóng modal
+
+        // Đóng modal sau khi thêm nhân viên
+        const modalElement = document.getElementById('addEmployeeModal');
+        const modalInstance = Modal.getInstance(modalElement);
+        if (modalInstance) {
+            modalInstance.hide();
+        }
     };
 
     return (
