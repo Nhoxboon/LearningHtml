@@ -37,6 +37,10 @@ function AddEmployeeModal(props) {
         if (modalInstance) {
             modalInstance.hide();
         }
+
+        //Cách khác để đóng modal(tác động trực tiếp vào DOM)
+        // document.getElementById('addEmployeeModal').classList.remove('show'); // Loại bỏ lớp 'show' để đóng modal
+        // document.getElementById('addEmployeeModal').setAttribute('aria-hidden', 'true'); // Đặt thuộc tính aria-hidden thành 'true' để đóng modal
     };
 
     return (
