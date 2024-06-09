@@ -1,4 +1,11 @@
+//data validate cho name không được nhập quá 50 kí tự, birthday phải đúng định dạng dd/mm/yyyy
+function validateName(name) {
+    return name.length <= 50;
+}
 
+function validateBirthday(birthday) {
+    return /^\d{2}\/\d{2}\/\d{4}$/.test(birthday);
+}
 
 // Get employees from localStorage or fallback to JSON file
 function getStudent(callback) {
@@ -68,7 +75,17 @@ $('#addStudentForm').submit(function(event) {
     const position = $('#studentPosition').val().trim();
     const status = "Đang hoạt động";
 
-    if (!name || !birthday || !position) {
+    if (!validateName(name) || !validateBirthday(birthday) || !position) {
+        if(!validateName(name))
+        {
+            alert('Tên không được nhập quá 50 kí tự.');
+            return;
+        }
+        else if(!validateBirthday(birthday))
+        {
+            alert('Ngày sinh phải đúng định dạng dd/mm/yyyy.');
+            return;
+        }
         alert('Vui lòng kiểm tra lại thông tin.');
         return;
     }
