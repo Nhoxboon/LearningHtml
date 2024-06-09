@@ -8,6 +8,23 @@
     color: white; /* Màu xanh khi di chuột qua */
 }
 
-.button{
-    margin: 0%;
+.deny, .add{
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+}
+.deny{
+    margin-right: 5px;
+}
+
+b{
+    font-weight: bold;
+}
+
+.status-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
 }

@@ -1,36 +1,40 @@
-function validatePhoneNumber(phone) {
-    return /^0\d{9}$/.test(phone);
-}
+
 
 // Get employees from localStorage or fallback to JSON file
-function getEmployees(callback) {
-    const employees = JSON.parse(localStorage.getItem('employees'));
-    if (employees) {
-        callback(employees);
+function getStudent(callback) {
+    const students = JSON.parse(localStorage.getItem('students'));
+    if (students) {
+        callback(students);
     } else {
-        $.getJSON('/assets/json/data.json', data => {
-            localStorage.setItem('employees', JSON.stringify(data));
+        $.getJSON('/asset/json/data.json', data => {
+            localStorage.setItem('students', JSON.stringify(data));
             callback(data);
         }).fail(() => console.error('Request failed'));
     }
 }
 
 
-function saveEmployees(employees) {
-    localStorage.setItem('employees', JSON.stringify(employees));
+function saveStudents(students) {
+    localStorage.setItem('students', JSON.stringify(students));
 }
 
 
-function renderEmployeeTable(data) {
-    const employeeTable = $('#employeeTable').empty();
-    data.forEach((employee, index) => {
-        employeeTable.append(`
+function renderStudentTable(data) {
+    const studentTable = $('#studentTable').empty();
+    data.forEach((student, index) => {
+        
+        const statusAngle = getStatusAngle(student.status);
+        const statusCircle = `<div class="status-circle" style="${statusAngle}"></div>`;
+
+        studentTable.append(`
             <div class="row border-top py-3 m-2" data-index="${index}">
-                <div class="col"><input type="checkbox"></div>
-                <div class="col">${employee.name}</div>
-                <div class="col">${employee.email}</div>
-                <div class="col">${employee.address}</div>
-                <div class="col">${employee.phone}</div>
+                <div class="col">${student.id}</div>
+                <div class="col">${student.name}</div>
+                <div class="col">${student.birthday}</div>
+                <div class="col">${student.position}</div>
+                <div class="col">
+                    ${statusCircle} ${student.status}
+                </div>
                 <div class="col ml-0">
                     <button class="btn text-primary btn-lg btn-edit" type="button"><i class="bi bi-pencil"></i></button>
                     <button class="btn text-danger btn-lg btn-delete" type="button"><i class="bi bi-trash-fill"></i></button>
@@ -43,62 +47,86 @@ function renderEmployeeTable(data) {
     $('.btn-delete').click(handleDelete);
 }
 
-// Handle form submission
-$('#addEmployeeForm').submit(function(event) {
-    event.preventDefault();
-    
-    const name = $('#employeeName').val().trim();
-    const email = $('#employeeEmail').val().trim();
-    const address = $('#employeeAddress').val().trim();
-    const phone = $('#employeePhone').val().trim();
 
-    if (!name || !email || !address || !validatePhoneNumber(phone)) {
-        alert('Vui lòng kiểm tra lại thông tin. Số điện thoại phải có độ dài 10 ký tự và bắt đầu bằng số 0.');
+// Handle form submission
+$('#addStudentForm').submit(function(event) {
+    event.preventDefault();
+
+    //id khi thêm vào sẽ bằng số id lớn nhất hiện có + 1
+    const data = JSON.parse(localStorage.getItem('students'));
+    let maxId = 0;
+    data.forEach((student) => {
+        if (student.id > maxId) {
+            maxId = student.id;
+        }
+    });
+    //parseInt để chuyển từ string sang number
+    maxId = parseInt(maxId);
+    let id = maxId + 1;
+    const name = $('#studentName').val().trim();
+    const birthday = $('#studentBirthday').val().trim();
+    const position = $('#studentPosition').val().trim();
+    const status = "Đang hoạt động";
+
+    if (!name || !birthday || !position) {
+        alert('Vui lòng kiểm tra lại thông tin.');
         return;
     }
 
-    const newEmployee = { name, email, address, phone };
-    const editIndex = $('#addEmployeeModal').data('editIndex');
+    const newStudent = { id, name, birthday, position, status };
+    const editIndex = $('#addStudentModal').data('editIndex');
 
-    getEmployees(data => {
+    getStudent(data => {
         if (editIndex !== undefined) {
-            data[editIndex] = newEmployee;
-            $('#addEmployeeModal').removeData('editIndex');
+            data[editIndex] = newStudent;
+            $('#addStudentModal').removeData('editIndex');
         } else {
-            data.push(newEmployee);
+            data.push(newStudent);
         }
-        saveEmployees(data);
-        renderEmployeeTable(data);
+        saveStudents(data);
+        renderStudentTable(data);
     });
 
-    $('#addEmployeeModal').modal('hide');
-    $('#addEmployeeForm')[0].reset();
+    $('#addStudentModal').modal('hide');
+    $('#addStudentModal')[0].reset();
 });
-
-
-function handleEdit() {
-    const index = $(this).closest('.row').data('index');
-    getEmployees(data => {
-        const employee = data[index];
-        $('#employeeName').val(employee.name);
-        $('#employeeEmail').val(employee.email);
-        $('#employeeAddress').val(employee.address);
-        $('#employeePhone').val(employee.phone);
-        $('#addEmployeeModal').modal('show').data('editIndex', index);
-    });
-}
-
-
-function handleDelete() {
-    const index = $(this).closest('.row').data('index');
-    getEmployees(data => {
-        data.splice(index, 1);
-        saveEmployees(data);
-        renderEmployeeTable(data);
-    });
-}
 
 // Initial load of employee data
 $(document).ready(() => {
-    getEmployees(renderEmployeeTable);
+    getStudent(renderStudentTable);
 });
+
+const getStatusAngle = (status) => {
+    switch (status) {
+      case "Thôi học":
+        return "background-color: red;";
+      case "Vắng":
+        return "background-color: yellow;";
+      case "Đang hoạt động":
+        return "background-color: green;";
+      default:
+        return "background-color: green;";
+    }
+  };
+
+// Handle edit button click
+function handleEdit() {
+    const index = $(this).closest('.row').data('index');
+    getStudent(data => {
+        const student = data[index];
+        $('#studentName').val(student.name);
+        $('#studentBirthday').val(student.birthday);
+        $('#studentPosition').val(student.position);
+        $('#addStudentModal').data('editIndex', index).modal('show');
+    });
+}
+
+// Handle delete button click
+function handleDelete() {
+    const index = $(this).closest('.row').data('index');
+    getStudent(data => {
+        data.splice(index, 1);
+        saveStudents(data);
+        renderStudentTable(data);
+    });
+}
