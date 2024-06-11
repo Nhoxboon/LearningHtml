@@ -8,7 +8,7 @@ function getEmployees(callback) {
     if (employees) {
         callback(employees);
     } else {
-        $.getJSON('/assets/json/data.json', data => {
+        $.getJSON('/asset/json/data.json', data => {
             localStorage.setItem('employees', JSON.stringify(data));
             callback(data);
         }).fail(() => console.error('Request failed'));
