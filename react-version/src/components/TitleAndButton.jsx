@@ -37,7 +37,7 @@ function TitleAndButton() {
     }, []);
 
     function addStudent(student){
-        setStudents([...students, student]);
+        setStudents(students => [...students, student]);
 
         localStorage.setItem('students', JSON.stringify([...students, student]));
     }
